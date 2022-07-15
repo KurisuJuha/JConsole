@@ -10,6 +10,7 @@ namespace JuhaKurisu.JConsole
     {
         public static JConsoleDisplay Display = new JConsoleDisplay();
         public static char c;
+        public static char[] d;
 
         public static void Init()
         {
@@ -25,7 +26,7 @@ namespace JuhaKurisu.JConsole
         public static void Update()
         {
             Console.SetCursorPosition(0, 0);
-            char[] d = new char[Console.WindowHeight * (Console.WindowWidth + 1)];
+            d = new char[Console.WindowHeight * (Console.WindowWidth + 1)];
             
             Parallel.For(0, Console.WindowHeight, y =>
             {
@@ -35,6 +36,7 @@ namespace JuhaKurisu.JConsole
                 });
                 d[y * (Console.WindowWidth + 1)] = '\n';
             });
+            
             /*
             for (int y = 0; y < Console.WindowHeight; y++)
             {

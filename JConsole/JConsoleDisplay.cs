@@ -81,10 +81,14 @@ namespace JuhaKurisu.JConsole
             return jcd;
         }
 
-        public List<(int,int)> ResetDiff()
+        /// <summary>
+        /// Diffをリセットする
+        /// </summary>
+        public void ResetDiff()
         {
             Diff = new List<(int, int)>();
-            return Diff;
         }
+
+
     }
 }
