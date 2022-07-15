@@ -88,7 +88,5 @@ namespace JuhaKurisu.JConsole
         {
             Diff = new List<(int, int)>();
         }
-
-
     }
 }
