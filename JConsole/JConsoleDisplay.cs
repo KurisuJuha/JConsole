@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Kokuban.AnsiEscape;
 
 namespace JuhaKurisu.JConsole
 {
     public static class JConsoleDisplay
     {
         public static Dictionary<(int, int), JConsoleChar> BufferDisplay = new Dictionary<(int, int), JConsoleChar>();
-
-        public static JConsoleChar GetBDisplay((int, int) pos)
-        {
-            return GetBDisplay(pos.Item1, pos.Item2);
-        }
 
         public static JConsoleChar GetBDisplay(int x, int y)
         {
@@ -35,6 +31,25 @@ namespace JuhaKurisu.JConsole
             JConsoleChar jcd = GetBDisplay(x, y);
 
             jcd.c = c;
+
+            return jcd;
+        }
+
+        public static JConsoleChar SetBDisplay(int x, int y, AnsiStyle style)
+        {
+            JConsoleChar jcd = GetBDisplay(x, y);
+
+            jcd.style = style;
+
+            return jcd;
+        }
+
+        public static JConsoleChar SetBDisplay(int x , int y , char c , AnsiStyle style)
+        {
+            JConsoleChar jcd = GetBDisplay(x, y);
+
+            jcd.c = c;
+            jcd.style = style;
 
             return jcd;
         }
