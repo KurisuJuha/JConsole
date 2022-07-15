@@ -1,32 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Kokuban.AnsiEscape;
+﻿using Kokuban.AnsiEscape;
 
 namespace JuhaKurisu.JConsole
 {
-    public static class JConsoleDisplay
+    public class JConsoleDisplay
     {
-        public static Dictionary<(int, int), JConsoleChar> BufferDisplay = new Dictionary<(int, int), JConsoleChar>();
+        public Dictionary<(int, int), JConsoleChar> DisplayBuffer = new Dictionary<(int, int), JConsoleChar>();
 
-        public static JConsoleChar GetBDisplay(int x, int y)
+        public JConsoleChar GetBDisplay(int x, int y)
         {
-            if (BufferDisplay.TryGetValue((x,y), out JConsoleChar value))
+            if (DisplayBuffer.TryGetValue((x, y), out JConsoleChar? value))
             {
                 if (value == null)
                 {
-                    return new JConsoleChar();
+                    DisplayBuffer.Add((x, y), new JConsoleChar());
+                    return DisplayBuffer[(x, y)];
                 }
 
                 return value;
             }
 
-            return new JConsoleChar();
+            DisplayBuffer.Add((x, y), new JConsoleChar());
+            return DisplayBuffer[(x, y)];
         }
 
-        public static JConsoleChar SetBDisplay(int x, int y, char c)
+        public JConsoleChar SetBDisplay(int x, int y, char c)
         {
             JConsoleChar jcd = GetBDisplay(x, y);
 
@@ -35,16 +32,16 @@ namespace JuhaKurisu.JConsole
             return jcd;
         }
 
-        public static JConsoleChar SetBDisplay(int x, int y, AnsiStyle style)
+        public JConsoleChar SetBDisplay(int x, int y, AnsiStyle style)
         {
             JConsoleChar jcd = GetBDisplay(x, y);
 
             jcd.style = style;
-
+            
             return jcd;
         }
 
-        public static JConsoleChar SetBDisplay(int x , int y , char c , AnsiStyle style)
+        public JConsoleChar SetBDisplay(int x , int y , char c , AnsiStyle style)
         {
             JConsoleChar jcd = GetBDisplay(x, y);
 

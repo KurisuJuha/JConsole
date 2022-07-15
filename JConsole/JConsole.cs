@@ -7,12 +7,13 @@ namespace JuhaKurisu.JConsole
 {
     public static class JConsole
     {
+        public static JConsoleDisplay Display = new JConsoleDisplay();
+
         public static void Init()
         {
-            AnsiStyle style = Chalk.Bold.Gray.BgYellow;
-            JConsoleDisplay.BufferDisplay[(1, 1)] = new JConsoleChar();
-            JConsoleDisplay.BufferDisplay[(1, 1)].style = style;
-            JConsoleDisplay.BufferDisplay[(1, 1)].c = 'a';
+            AnsiStyle style = Chalk.BgYellow;
+            Display.SetBDisplay(1, 1, 't', style);
+            Console.WriteLine(Display.GetBDisplay(1, 1).ToString());
             
             Console.ReadKey();
         }

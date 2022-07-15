@@ -10,7 +10,12 @@ namespace JuhaKurisu.JConsole
 {
     public class JConsoleChar
     {
-        public char c;
-        public AnsiStyle style;
+        public char c = ' ';
+        public AnsiStyle style = new AnsiStyle();
+
+        public override string ToString()
+        {
+            return style + c.ToString();
+        }
     }
 }
