@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Kokuban;
+using Kokuban.AnsiEscape;
 
 namespace JuhaKurisu.JConsole
 {
@@ -8,17 +9,11 @@ namespace JuhaKurisu.JConsole
     {
         public static void Init()
         {
-            Console.WriteLine(Console.WindowHeight);
-            Console.WriteLine(Console.WindowWidth);
-            Console.WriteLine("\u001b[31mHello World!\u001b[0m");
-            var stdout = Console.OpenStandardOutput();
-            var con = new StreamWriter(stdout, Encoding.ASCII);
-            con.AutoFlush = true;
-            Console.SetOut(con);
-
-            Console.WriteLine("\x1b[36mTEST\x1b[0m");
-            Console.Write(Chalk.Gray + "test");
-            Console.Write("test2");
+            AnsiStyle style = Chalk.Bold.Gray.BgYellow;
+            JConsoleDisplay.BufferDisplay[(1, 1)] = new JConsoleChar();
+            JConsoleDisplay.BufferDisplay[(1, 1)].style = style;
+            JConsoleDisplay.BufferDisplay[(1, 1)].c = 'a';
+            
             Console.ReadKey();
         }
 
