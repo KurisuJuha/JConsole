@@ -10,6 +10,11 @@ namespace JuhaKurisu.JConsole
         public Dictionary<(int, int), JConsoleChar> DisplayBuffer = new Dictionary<(int, int), JConsoleChar>();
 
         /// <summary>
+        /// 変更点
+        /// </summary>
+        public List<(int, int)> Diff = new List<(int, int)>();
+
+        /// <summary>
         /// 指定された座標のDisplayのデータを取得します
         /// </summary>
         /// <param name="x">x座標</param>
@@ -41,11 +46,7 @@ namespace JuhaKurisu.JConsole
         /// <returns>取得したデータ</returns>
         public JConsoleChar SetBDisplay(int x, int y, char c)
         {
-            JConsoleChar jcd = GetBDisplay(x, y);
-
-            jcd.c = c;
-
-            return jcd;
+            return SetBDisplay(x, y, c, GetBDisplay(x, y).style);
         }
 
         /// <summary>
@@ -57,11 +58,7 @@ namespace JuhaKurisu.JConsole
         /// <returns>取得したデータ</returns>
         public JConsoleChar SetBDisplay(int x, int y, AnsiStyle style)
         {
-            JConsoleChar jcd = GetBDisplay(x, y);
-
-            jcd.style = style;
-            
-            return jcd;
+            return SetBDisplay(x, y, GetBDisplay(x, y).c, style);
         }
 
         /// <summary>
@@ -78,6 +75,8 @@ namespace JuhaKurisu.JConsole
 
             jcd.c = c;
             jcd.style = style;
+
+            Diff.Add((x, y));
 
             return jcd;
         }
