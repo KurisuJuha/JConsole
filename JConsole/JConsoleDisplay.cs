@@ -1,4 +1,5 @@
-﻿using Kokuban.AnsiEscape;
+﻿using System.Diagnostics;
+using Kokuban.AnsiEscape;
 
 namespace JuhaKurisu.JConsole
 {
@@ -22,18 +23,13 @@ namespace JuhaKurisu.JConsole
         /// <returns>取得したデータ</returns>
         public JConsoleChar GetBDisplay(int x, int y)
         {
-            if (DisplayBuffer.TryGetValue((x, y), out JConsoleChar? value))
-            {
-                if (value == null)
-                {
-                    DisplayBuffer.Add((x, y), new JConsoleChar());
-                    return DisplayBuffer[(x, y)];
-                }
+            bool canAdd = !DisplayBuffer.ContainsKey((x, y));
 
-                return value;
+            if (canAdd)
+            {
+                DisplayBuffer.Add((x, y), new JConsoleChar());
             }
 
-            DisplayBuffer.Add((x, y), new JConsoleChar());
             return DisplayBuffer[(x, y)];
         }
 
