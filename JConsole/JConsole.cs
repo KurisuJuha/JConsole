@@ -37,7 +37,7 @@ namespace JuhaKurisu.JConsole
                 }
                 else
                 {
-                    key = null;
+                    key = new ConsoleKeyInfo();
                 }
 
                 // _displayを初期化
