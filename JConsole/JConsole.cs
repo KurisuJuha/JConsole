@@ -34,7 +34,10 @@ namespace JuhaKurisu.JConsole
                 if (Console.KeyAvailable)
                 {
                     key = Console.ReadKey(true);
-
+                }
+                else
+                {
+                    key = null;
                 }
 
                 // _displayを初期化
