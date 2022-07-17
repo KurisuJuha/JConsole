@@ -33,22 +33,22 @@ namespace JuhaKurisu.JConsole
                 Console.Clear();
                 _display = new string[Console.WindowHeight][];
 
-                Parallel.For(0, Console.WindowHeight, i =>
+                for (int i = 0; i < Console.WindowHeight; i++)
                 {
                     _display[i] = new string[Console.WindowWidth];
 
-                    Parallel.For(0, Console.WindowWidth, j =>
+                    for (int j = 0; j < Console.WindowWidth; j++)
                     {
                         _display[i][j] = Display.GetBDisplay(j, i).ToString();
-                    });
-                });
+                    }
+                }
 
                 lateWindowHeight = Console.WindowHeight;
                 lateWindowWidth = Console.WindowWidth;
             }
 
             // displayのdiffを元に_displayを変更する
-            Parallel.For(0, Display.Diff.Count , i =>
+            for (int i = 0; i < Display.Diff.Count; i++)
             {
                 if (_display.Length > Display.Diff[i].Item2 && _display[0].Length > Display.Diff[i].Item1)
                 {
@@ -56,7 +56,7 @@ namespace JuhaKurisu.JConsole
                 }
 
                 Display.ResetDiff();
-            });
+            }
 
             // _displayの内容を文字列化
             string[] ss = new string[_display.Length];
