@@ -13,6 +13,8 @@ namespace JuhaKurisu.JConsole
         public static int lateWindowHeight = 0;
         public static int lateWindowWidth = 0;
 
+        public static ConsoleKeyInfo key;
+
 
 
         public static void Init()
@@ -28,6 +30,12 @@ namespace JuhaKurisu.JConsole
             {
                 sw.Restart();
                 Console.SetCursorPosition(0, 0);
+
+                if (Console.KeyAvailable)
+                {
+                    key = Console.ReadKey(true);
+
+                }
 
                 // _displayを初期化
                 if (lateWindowHeight != Console.WindowHeight || lateWindowWidth != Console.WindowWidth)
