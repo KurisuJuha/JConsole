@@ -8,9 +8,8 @@ namespace Test
         {
             JConsole.Start();
 
-            while (true)
-            {
-            }
+            JConsole.Write("aiueo");
+            JConsole.Wait();
         }
     }
 }
